@@ -27,3 +27,8 @@ jobs:
           VALIDATE_ALL_CODEBASE: false
           DEFAULT_BRANCH: "main"
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - name: Log in to Docker Hub and push Docker image
+        run: |
+           echo "${{ secrets.DOCKER_PASSWORD }}" | docker login -u "bharathm7" --password-stdin
+           docker build -t bharathm7/maven:latest .
+           docker push bharathm7/maven:latest
